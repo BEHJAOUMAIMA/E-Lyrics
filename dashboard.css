@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+*{
+    font-family: 'Poppins', sans-serif;
+}
+
+:root{
+    --offcanvas-width: 270px;
+    --topNavHeight: 56px;
+}
+
+.sidebar-nav{
+    width: var(--offcanvas-width) !important;
+    background-color: #7faaca !important;
+    color: white !important;
+}
+.dropdown-divider{
+    border-top: 1px solid white !important;
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+}
+
+.sidebar-link .right-icon{
+    display: inline-flex;
+}
+.sidebar-link[aria-expanded="true"] .right-icon {
+    transform: rotate(180deg);
+}
+
+@media screen and (min-width : 992px) {
+    body{
+        overflow: auto !important;
+    }
+    .offcanvas-backdrop::before{
+        display: none;
+    }
+    main{
+        margin-left: var(--offcanvas-width);
+    }
+    .sidebar-nav{
+        transform: none !important;
+        visibility: visible;
+        top:  var(--topNavHeight) !important;
+        height: calc(100% - var(--topNavHeight));
+    }
+}

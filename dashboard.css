@@ -8,12 +8,19 @@
     --topNavHeight: 56px;
 }
 
+.dropdown-toggle{
+    color: white;
+}
+.dropdown-toggle:hover{
+    color: white;
+}
+
 .sidebar-nav{
     width: var(--offcanvas-width) !important;
-    background-color: #7faaca !important;
+    background-color: #204c7b !important;
     color: white !important;
 }
-.dropdown-divider{
+.line{
     border-top: 1px solid white !important;
 }
 

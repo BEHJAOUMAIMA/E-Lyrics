@@ -7,6 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="./dashboard.css">
     <title>Dashboard</title>
 </head>
@@ -27,8 +28,8 @@
            
             <form class="d-flex ms-auto" role="search">
                 <div class="input-group my-3 my-lg-0">
-                    <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
-                    <button class="btn btn-outline-secondary" type="button" id="button-addon2"><i class="bi bi-search"></i></button>
+                    <input type="text" class="form-control" placeholder="Search Songs" aria-label="Recipient's username" aria-describedby="button-addon2">
+                    <button class="btn btn-outline-light me-lg-3" type="button" id="button-addon2"><i class="bi bi-search"></i></button>
                   </div>
             </form>
 
@@ -38,10 +39,9 @@
                     <i class="bi bi-person-fill"></i>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#"><span><i class="bi bi-music-note-beamed me-1"></i></span> Songs</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    <li><a class="dropdown-item" href="#"><span><i class="bi bi-box-arrow-right me-1"></i></span> Logout</a></li>
                   </ul>
                 </li>
               </ul>
@@ -56,7 +56,7 @@
             <nav>
                 <ul class="navbar-nav">
                     <li>
-                        <div class="text-muted small fw-bold text-uppercase px-3">
+                        <div class="text-white small fw-bold text-uppercase px-3">
                              CORE
                         </div>
                     </li>
@@ -67,10 +67,10 @@
                         </a>
                     </li>
                     <li class="my-4">
-                        <hr class="dropdown-divider"/>
+                        <hr class="line dropdown-divider"/>
                     </li>
                     <li>
-                        <div class="text-muted small fw-bold text-uppercase px-3">
+                        <div class="text-white small fw-bold text-uppercase px-3">
                              Interface
                         </div>
                     </li>
@@ -99,9 +99,9 @@
                           <span>Pages</span>
                         </a>
                       </li>
-                      <li class="my-4"><hr class="dropdown-divider bg-light" /></li>
+                      <li class="my-4"><hr class="line dropdown-divider bg-light" /></li>
                       <li>
-                        <div class="text-muted small fw-bold text-uppercase px-3 mb-3">
+                        <div class="text-white small fw-bold text-uppercase px-3 mb-3">
                           Addons
                         </div>
                       </li>
@@ -122,7 +122,7 @@
         </div>
     </div>
     <!-- offcanvas end -->
-    <main class="mt-5 pt-3">
+    <main class="mt-5 py-4">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12 fw-bold fs-3">
@@ -130,8 +130,13 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-3 mb-3">
-                    <div class="card bg-primary text-white h-100">
+                <div class="col-md-12 fw-bold fs-5 my-3">
+                    Statistics
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <div class="card bg-dark text-white h-100">
                         <div class="card-body py-5">Primary Card</div>
                         <div class="card-footer d-flex">
                           View Details
@@ -141,8 +146,8 @@
                         </div>  
                     </div>
                 </div>
-                <div class="col-md-3 mb-3">
-                    <div class="card bg-warning text-dark h-100">
+                <div class="col-md-4 mb-3">
+                    <div class="card bg-dark text-white h-100">
                       <div class="card-body py-5">Warning Card</div>
                       <div class="card-footer d-flex">
                         View Details
@@ -152,8 +157,8 @@
                       </div>
                     </div>
                 </div>
-                <div class="col-md-3 mb-3">
-                    <div class="card bg-success text-white h-100">
+                <div class="col-md-4 mb-3">
+                    <div class="card bg-dark text-white h-100">
                       <div class="card-body py-5">Success Card</div>
                       <div class="card-footer d-flex">
                         View Details
@@ -163,21 +168,53 @@
                       </div>
                     </div>
                 </div>
-                <div class="col-md-3 mb-3">
-                    <div class="card bg-danger text-white h-100">
-                      <div class="card-body py-5">Danger Card</div>
-                      <div class="card-footer d-flex">
-                        View Details
-                        <span class="ms-auto">
-                          <i class="bi bi-chevron-right"></i>
-                        </span>
-                      </div>
-                    </div>
+            </div>
+            <div class="row mt-5 pt-3" style="width: 90%; margin:auto;">
+                <div class="row">
+                  <div class="col-md-11 mb-4 pb-4">
+                  <button type="button" class="btn btn-outline-secondary" style="width: 300px ;"> <span><i class="bi bi-plus-lg me-1"></i></span> Add Song</button>
                   </div>
+                </div>
+                <div class="row">
+                  <table id="dataTableId" class="table table-light table-hover">
+                    <thead>
+                      <tr>
+                        <th scope="col">Title</th>
+                        <th scope="col">Artist</th>
+                        <th scope="col">Album</th>
+                        <th scope="col">Lyrics</th>
+                        <th scope="col">Year</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                        <td>@fat</td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
             </div>
         </div>
     </main>
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#dataTableId').DataTable();
+    });
+</script>
 </html>

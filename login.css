@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+body{
+    background-image: url("./images/BG4.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+}
+.wrapper{
+    width: 417px;
+    height: 550px;
+    background-color: #204c7b;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 1);
+    transition: 2s ease-in-out;
+}
+
+.wrapper .form-wrapper.sign-up{
+    position: absolute;
+    top: 0;
+    transform: scale(0);
+}
+
+.input-group{
+    margin: 30px 0;
+    border-bottom: 2px solid white;
+}
+.input-group label{
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: white;
+    pointer-events: none;
+    transition: .5s;
+}
+.input-group input{
+    width: 320px;
+    height: 40px;
+    font-size: 16px;
+    padding: 0 5px;
+    color: white;
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+.input-group input:focus~label{
+    top: -5px;
+}
+.input-group input:valid~label{
+    top : -5px;
+}
+/* .input-group input:invalid~label{
+    top: -5px;
+} */
+.remember{
+    margin: -5px 0 15px 5px;
+}
+.remember label{
+    color: white;
+    font-size: 14px;
+}
+.remember label input{
+    accent-color: #b97f40;
+}
+.signUp-link{
+    font-size: 14px;
+    margin: 15px 0;
+}
+.signUp-link p a {
+    text-decoration: none;
+}
+.signUp-link p a:hover {
+    text-decoration: underline;
+}
+.social-icons a {
+    display: inline-block;
+    width: 45px;
+    height: 45px;
+    background-color: transparent;
+    border: 1px solid white;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 55px;
+    margin: 15px 20px 0;
+    transition: .3s;
+}
+.social-icons a:hover {
+    background-color: white;
+}
+.social-icons a i {
+    color: white;
+    font-size: 25px;
+    transition: -3s;
+    font-weight: 500;
+}
+.social-icons a .bxl-facebook:hover {
+    color: #4064ac;
+    font-size: 27px;
+    font-weight: 600;
+}
+.social-icons a .bxl-twitter:hover {
+    color: #1DA1F2;
+    font-size: 27px;
+    font-weight: 600;
+}
+.social-icons a .bxl-instagram:hover {
+    color: #C13584;
+    font-size: 27px;
+    font-weight: 600;
+}

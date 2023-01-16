@@ -28,7 +28,7 @@
            
             <form class="d-flex ms-auto" role="search">
                 <div class="input-group my-3 my-lg-0">
-                    <input type="text" class="form-control" placeholder="Search Songs" aria-label="Recipient's username" aria-describedby="button-addon2">
+                    <input type="text" class="form-control" placeholder="Search" aria-label="Recipient's username" aria-describedby="button-addon2">
                     <button class="btn btn-outline-light me-lg-3" type="button" id="button-addon2"><i class="bi bi-search"></i></button>
                   </div>
             </form>
@@ -182,8 +182,8 @@
                         <th scope="col">Title</th>
                         <th scope="col">Artist</th>
                         <th scope="col">Album</th>
-                        <th scope="col">Lyrics</th>
-                        <th scope="col">Year</th>
+                        <th scope="col"> Date</th>
+                        <th scope="col">Song Lyrics</th>
                       </tr>
                     </thead>
                     <tbody>

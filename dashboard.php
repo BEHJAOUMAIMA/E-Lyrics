@@ -134,6 +134,7 @@
                     Statistics
                 </div>
             </div>
+            <!-- Cards statistics start -->
             <div class="row">
                 <div class="col-md-4 mb-3">
                     <div class="card bg-dark text-white h-100">
@@ -169,13 +170,60 @@
                     </div>
                 </div>
             </div>
+            <!-- cards statistics end -->
             <div class="row mt-5 pt-3" style="width: 90%; margin:auto;">
+            <!-- Button ADD start -->
                 <div class="row">
                   <div class="col-md-11 mb-4 pb-4">
-                  <button type="button" class="btn btn-outline-secondary" style="width: 300px ;"> <span><i class="bi bi-plus-lg me-1"></i></span> Add Song</button>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                     <span><i class="bi bi-plus"></i></span> Add new Song
+                    </button>
                   </div>
                 </div>
-                <div class="row">
+            <!-- Button ADD end -->
+            <!-- Modal start -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <form action="">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel">AddSong</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <input type="hidden" value="" id="hideId" name="hideId">
+                          <div class="mb-3">
+                            <label for="songTitle" class="form-label">Song Title</label>
+                            <input type="text" class="form-control" id="songTitle">
+                          </div>
+                          <div class="mb-3">
+                            <label for="artist" class="form-label">Artist</label>
+                            <input type="text" class="form-control" id="artist">
+                          </div>
+                          <div class="mb-3">
+                            <label for="album" class="form-label">Album</label>
+                            <input type="text" class="form-control" id="album">
+                          </div>
+                          <div class="mb-3">
+                            <label for="year" class="form-label">Year of Creation</label>
+                            <input type="number" class="form-control" id="year">
+                          </div>
+                          <div class="mb-3">
+                            <label for="lyrics" class="form-label">Song Lyrics</label>
+                            <textarea type="Text" class="form-control" name="lyrics" id="lyrics" rows="4"></textarea>
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-primary">Save</button>
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>  
+                        </div>
+                      </div>
+                </div>
+              </form> 
+            </div>
+            <!-- Modal end -->
+                <!-- DataTable start -->
+                <div class="row table-responsive">
                   <table id="dataTableId" class="table table-light table-hover">
                     <thead>
                       <tr>
@@ -204,6 +252,7 @@
                     </tbody>
                   </table>
                 </div>
+                <!-- DataTable end -->
             </div>
         </div>
     </main>

@@ -1,3 +1,7 @@
+<?php 
+if (isset($POST["signIn"]))
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,7 +33,7 @@
                 <div class="remember">
                     <label> <input type="checkbox" id="rememberMe" name="rememberMe"> Remember me</label>
                 </div>
-                <button class="position-relative w-100 border-0 fw-bold rounded-3" style="height: 40px; background-color: #d49c4f; color: white;font-size: 16px; outline: none;" type="submit">Sign In</button>
+                <button class="position-relative w-100 border-0 fw-bold rounded-3" style="height: 40px; background-color: #d49c4f; color: white;font-size: 16px; outline: none;" type="submit" name="signIn" id="signIn">Sign In</button>
                 <div class="signUp-link text-center">
                     <p class="text-white">Don't have an account ?<a href="./register.php" class="signUpBtn-link fw-bold" style="color: #d49c4f;"> Sign Up</a></p>
                 </div>

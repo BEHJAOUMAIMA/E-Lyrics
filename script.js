@@ -71,3 +71,5 @@ const validateInputs = () => {
         setSuccess(password2);
     }
 }
+
+// login validation 

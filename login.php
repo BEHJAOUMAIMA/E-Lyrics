@@ -1,7 +1,3 @@
-<?php 
-if (isset($POST["signIn"]))
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +12,7 @@ if (isset($POST["signIn"]))
 <body class="d-flex justify-content-center align-items-center">
     <div class="wrapper d-flex justify-content-center align-items-center position-relative p-5 rounded-4">
         <div class="form-wrapper d-flex align-items-center w-100 h-100 sign-in">
-            <form action="" id="login" name="logForm">
+            <form action="./Includes/login.inc.php" id="login" name="logForm">
                 <h2 class="fs-2 fw-bolder text-center text-white mb-5">
                     Sign In 
                 </h2>

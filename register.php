@@ -1,15 +1,3 @@
-<?php
-if(isset($_POST["register"])){
-    $user = $_POST["UserName"];
-    $mail = $_POST["Email"];
-    $pass1 = $_POST["Password"];
-    $pass2 = $_POST["passwordConfirm"];
-}
-
-
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +12,7 @@ if(isset($_POST["register"])){
 <body class="d-flex justify-content-center align-items-center">
     <div class="wrapper position-relative p-5 rounded-4">
         <div class="form-wrapper d-flex align-items-center w-100 h-100 sign-up">
-            <form action="/" id="register" name="registerForm">
+            <form action="./Includes/register.inc.php" method="post" id="register" name="registerForm">
                 <h2 class="fs-2 fw-bolder text-center text-white mb-5">
                     Sign Up 
                 </h2>

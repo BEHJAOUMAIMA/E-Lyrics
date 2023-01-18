@@ -175,7 +175,7 @@
             <!-- Button ADD start -->
                 <div class="row">
                   <div class="col-md-11 mb-4 pb-4">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                      <span><i class="bi bi-plus"></i></span> Add new Song
                     </button>
                   </div>
@@ -187,7 +187,7 @@
                 <div class="modal-dialog modal-dialog-centered modal-lg">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <h1 class="modal-title fs-5" id="exampleModalLabel">AddSong</h1>
+                          <h1 class="modal-title fs-5" id="exampleModalLabel">Add Song</h1>
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -212,8 +212,13 @@
                             <label for="lyrics" class="form-label">Song Lyrics</label>
                             <textarea type="Text" class="form-control" name="lyrics" id="lyrics" rows="4"></textarea>
                           </div>
+                          
+                        </div>
+                        <div class="another-div">
                         </div>
                         <div class="modal-footer">
+                          <button type="button" class="btn btn-success" id="addMore" name="addMore">Add</button>
+                          <button type="button" class="btn btn-danger me-auto">Remove</button>
                           <button type="button" class="btn btn-primary">Save</button>
                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>  
                         </div>
@@ -266,4 +271,5 @@
         $('#dataTableId').DataTable();
     });
 </script>
+<script src="./script.js"></script>
 </html>

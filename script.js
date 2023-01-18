@@ -1,3 +1,12 @@
+// dynamic Form
+const addMoreBtn = document.querySelector('#addMore')
+const anotherDiv = document.querySelector('.another-div');
+const  modal = document.querySelector('.modal-body');
+
+
+addMoreBtn.addEventListener('click', (e)=>{
+    anotherDiv.append(modal.cloneNode(true));
+})
 // Register Validation
 
 const form = document.getElementById('register');

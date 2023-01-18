@@ -4,7 +4,7 @@ class Database
       private $hostName = 'localhost';
       private $userName = 'root';
       private $password = '';
-      private $db = 'e-lyrics';
+      private $db = 'c';
       private function connection()
       {
             $conn = new PDO('mysql:host=' . $this->hostName  . ';dbname=' . $this->db, $this->userName, $this->password);

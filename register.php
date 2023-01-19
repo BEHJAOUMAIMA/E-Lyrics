@@ -12,7 +12,7 @@
 <body class="d-flex justify-content-center align-items-center">
     <div class="wrapper position-relative p-5 rounded-4">
         <div class="form-wrapper d-flex align-items-center w-100 h-100 sign-up">
-            <form action="./Includes/register.inc.php" method="post" id="register" name="registerForm">
+            <form action="" method="post" id="register" name="registerForm">
                 <h2 class="fs-2 fw-bolder text-center text-white mb-5">
                     Sign Up 
                 </h2>

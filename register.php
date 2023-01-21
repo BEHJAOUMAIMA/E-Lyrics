@@ -12,7 +12,7 @@
 <body class="d-flex justify-content-center align-items-center">
     <div class="wrapper position-relative p-5 rounded-4">
         <div class="form-wrapper d-flex align-items-center w-100 h-100 sign-up">
-            <form action="" method="post" id="register" name="registerForm">
+            <form action="./Classes/register-inc.php" method="post" id="registerForm" name="registerForm">
                 <h2 class="fs-2 fw-bolder text-center text-white mb-5">
                     Sign Up 
                 </h2>
@@ -39,7 +39,7 @@
                 <div class="agree">
                     <label> <input type="checkbox"> I agree to the termes & conditions</label>
                 </div>
-                <button class="position-relative w-100 border-0 fw-bold rounded-3" style="height: 40px; background-color: #d49c4f; color: white;font-size: 16px; outline: none;" type="submit" name="register" id="register">Sign Up</button>
+                <button class="position-relative w-100 border-0 fw-bold rounded-3" style="height: 40px; background-color: #d49c4f; color: white;font-size: 16px; outline: none;" type="submit" name="registerBtn" id="registeBtn">Sign Up</button>
                 <div class="signUp-link text-center">
                     <p class="text-white">Already have an account ?<a href="./login.php" class="signInBtn-link fw-bold" style="color: #d49c4f;"> Sign In</a></p>
                 </div>

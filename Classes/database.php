@@ -1,10 +1,11 @@
 <?php
+session_start();
 class Database
 {
       private $hostName = 'localhost';
       private $userName = 'root';
       private $password = '';
-      private $db = 'c';
+      private $db = 'e-lyrics';
       private function connection()
       {
             $conn = new PDO('mysql:host=' . $this->hostName  . ';dbname=' . $this->db, $this->userName, $this->password);
@@ -12,7 +13,7 @@ class Database
             try {
                 return $conn;
             } catch (PDOException $e) {
-                  echo 'Database Error: ' . $e->getMessage();
+                  echo 'Something went wrong with your connection ...!' . $e->getMessage();
             }
       }
       public function getConnection(){

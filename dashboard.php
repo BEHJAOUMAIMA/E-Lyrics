@@ -225,7 +225,6 @@
                           <button type="submit" class="btn btn-warning" id="updateBtn" name="updateBtn">Update</button>
                           <button type="submit" class="btn btn-primary px-3" id="saveBtn" name="saveBtn">Save</button> 
                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closeBtn">Close</button>
-                         
                           <button type="submit" class="btn btn-danger px-3" id="deleteBtn" name="deleteBtn">Delete</button>                                                  </div>
                       </div>
                 </div>
@@ -263,7 +262,7 @@
                         <td><?php echo $melodie["paroles"]?></td>
                         <td class="d-flex">
                             <button onclick="edit(<?php echo $melodie['id']?>)" type="button" class="btn btn-warning mx-1" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-pencil-square"></i></button>
-                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-trash3"></i></button>
+                            <button onclick="deletebtn(<?php echo $melodie['id']?>);" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-trash3"></i></button>
                         </td>
                       </tr>
                     <?php

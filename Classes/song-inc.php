@@ -33,4 +33,5 @@ if(isset($_POST["deleteBtn"])){
     $melody = new Song($title, $artist, $album, $year, $lyrics);
     $melody->setId($id);
     $melody->deleteSong();
+    header("location: ../dashboard.php");
 }

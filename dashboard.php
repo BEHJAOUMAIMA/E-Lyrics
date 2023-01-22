@@ -254,15 +254,15 @@
                       <?php 
                         foreach ($melodies as $melodie) {
                       ?>
-                      <tr id="<?php $melodie["id"]?>" title="<?php $melodie["titre"]?>" artist="<?php $melodie["artiste"]?>" 
-                      album="<?php $melodie["album"]?>" year="<?php $melodie["annee"]?>" lyrics="<?php $melodie["paroles"]?>">
+                      <tr id="<?php echo $melodie["id"]?>" title="<?php echo $melodie["titre"]?>" artist="<?php echo $melodie["artiste"]?>" 
+                      album="<?php echo $melodie["album"]?>" year="<?php echo $melodie["annee"]?>" lyrics="<?php echo $melodie["paroles"]?>">
                         <th scope="row"><?php echo $melodie["titre"]?></th>
                         <td><?php echo $melodie["artiste"]?></td>
                         <td><?php echo $melodie["album"]?></td>
                         <td><?php echo $melodie["annee"]?></td>
                         <td><?php echo $melodie["paroles"]?></td>
                         <td class="d-flex">
-                            <button onclick="edit();" type="button" class="btn btn-warning mx-1" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-pencil-square"></i></button>
+                            <button onclick="edit(<?php echo $melodie['id']?>)" type="button" class="btn btn-warning mx-1" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-pencil-square"></i></button>
                             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-trash3"></i></button>
                         </td>
                       </tr>

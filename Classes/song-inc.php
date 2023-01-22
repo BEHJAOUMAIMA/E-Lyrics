@@ -21,6 +21,7 @@ if(isset($_POST["updateBtn"])){
     $chansons = new Song($title, $artist, $album, $year, $lyrics);
     $chansons->setId($id);
     $chansons->updateSong();
+    header("location: ../dashboard.php");
 }
 if(isset($_POST["deleteBtn"])){
     $id = $_POST["Id"];

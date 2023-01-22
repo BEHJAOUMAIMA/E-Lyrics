@@ -1,3 +1,6 @@
+<?php
+  include_once("./Classes/songClasses.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -175,7 +178,7 @@
             <!-- Button ADD start -->
                 <div class="row">
                   <div class="col-md-11 mb-4 pb-4">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <button onclick="addNew();" type="button" id="addNew" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                      <span><i class="bi bi-plus"></i></span> Add new Song
                     </button>
                   </div>
@@ -183,7 +186,7 @@
             <!-- Button ADD end -->
             <!-- Modal start -->
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <form action="">
+              <form action="./Classes/song-inc.php" method="post" id="form">
                 <div class="modal-dialog modal-dialog-centered modal-lg">
                       <div class="modal-content">
                         <div class="modal-header">
@@ -191,43 +194,49 @@
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                          <input type="hidden" value="" id="hideId" name="hideId">
+                          <input type="hidden" value="" id="hideId" name="Id">
                           <div class="mb-3">
                             <label for="songTitle" class="form-label">Song Title</label>
-                            <input type="text" class="form-control" id="songTitle">
+                            <input type="text" name="title[]" class="form-control" id="songTitle">
                           </div>
                           <div class="mb-3">
                             <label for="artist" class="form-label">Artist</label>
-                            <input type="text" class="form-control" id="artist">
+                            <input type="text" name="artist[]" class="form-control" id="artist">
                           </div>
                           <div class="mb-3">
                             <label for="album" class="form-label">Album</label>
-                            <input type="text" class="form-control" id="album">
+                            <input type="text" name="album[]" class="form-control" id="album">
                           </div>
                           <div class="mb-3">
                             <label for="year" class="form-label">Year of Creation</label>
-                            <input type="number" class="form-control" id="year">
+                            <input type="number" name="year[]" class="form-control" id="year">
                           </div>
                           <div class="mb-3">
                             <label for="lyrics" class="form-label">Song Lyrics</label>
-                            <textarea type="Text" class="form-control" name="lyrics" id="lyrics" rows="4"></textarea>
+                            <textarea type="Text" class="form-control" name="lyrics[]" id="lyrics" rows="4"></textarea>
                           </div>
                           
                         </div>
                         <div class="another-div">
                         </div>
                         <div class="modal-footer">
-                          <button type="button" class="btn btn-success" id="addMore" name="addMore">Add</button>
-                          <button type="button" class="btn btn-danger me-auto">Remove</button>
-                          <button type="button" class="btn btn-primary">Save</button>
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>  
-                        </div>
+
+                          <button type="button" class="btn btn-success me-auto" id="addMore" name="addMore">Add</button>
+                          <button type="submit" class="btn btn-warning" id="updateBtn" name="updateBtn">Update</button>
+                          <button type="submit" class="btn btn-primary px-3" id="saveBtn" name="saveBtn">Save</button> 
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closeBtn">Close</button>
+                         
+                          <button type="submit" class="btn btn-danger px-3" id="deleteBtn" name="deleteBtn">Delete</button>                                                  </div>
                       </div>
                 </div>
               </form> 
             </div>
             <!-- Modal end -->
                 <!-- DataTable start -->
+                <?php
+                $song = new Song;
+                $melodies = $song->readSong();
+                ?>
                 <div class="row table-responsive">
                   <table id="dataTableId" class="table table-light table-hover">
                     <thead>
@@ -237,23 +246,29 @@
                         <th scope="col">Album</th>
                         <th scope="col"> Date</th>
                         <th scope="col">Song Lyrics</th>
+                        <th scope="col">Actions</th>
+
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
+                      <?php 
+                        foreach ($melodies as $melodie) {
+                      ?>
+                      <tr id="<?php $melodie["id"]?>" title="<?php $melodie["titre"]?>" artist="<?php $melodie["artiste"]?>" 
+                      album="<?php $melodie["album"]?>" year="<?php $melodie["annee"]?>" lyrics="<?php $melodie["paroles"]?>">
+                        <th scope="row"><?php echo $melodie["titre"]?></th>
+                        <td><?php echo $melodie["artiste"]?></td>
+                        <td><?php echo $melodie["album"]?></td>
+                        <td><?php echo $melodie["annee"]?></td>
+                        <td><?php echo $melodie["paroles"]?></td>
+                        <td class="d-flex">
+                            <button onclick="edit();" type="button" class="btn btn-warning mx-1" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-pencil-square"></i></button>
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-trash3"></i></button>
+                        </td>
                       </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        <td>@fat</td>
-                      </tr>
+                    <?php
+                      }
+                    ?>
                     </tbody>
                   </table>
                 </div>
@@ -271,5 +286,5 @@
         $('#dataTableId').DataTable();
     });
 </script>
-<script src="./JS/script.js"></script>
+<script src="./JS/dashboard.js"></script>
 </html>

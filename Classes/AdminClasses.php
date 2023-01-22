@@ -22,17 +22,21 @@ class Admins extends Database{
         if (empty($this->username) || empty($this->email) || empty($this->pass) || empty($this->passRepeat)) {
             $_SESSION['message'] = "Please fill all required fields !!";
             header("location: ../register.php?error=emptyinput");
-        }elseif(!preg_match("/^[a-zA-Z0-9 ]*$/", $this->username)){
+        }
+        if(!preg_match("/^[a-zA-Z0-9 ]*$/", $this->username)){
             $_SESSION['message'] = "Please enter a valid Name !!";
             header("location: ../register.php?error=username");
-        }elseif(!filter_var($this->email, FILTER_VALIDATE_EMAIL)){
+        }
+        if(!filter_var($this->email, FILTER_VALIDATE_EMAIL)){
             $_SESSION['message'] = "Please enter a valid email !!";
             header("location: ../register.php?error=email");
-        }elseif($this->pass !== $this->passRepeat){
+        }
+        if($this->pass !== $this->passRepeat){
             $_SESSION['message'] = "Passwords dosn't Match !!";
             header("location: ../register.php?error=passwordmatch");
 
-        }elseif($res['id']== ''){
+        }
+        if($res['id']== ''){
             $insert = "INSERT INTO `user` (`username`, `email`, `password`) VALUES(?,?,?)";
             $stmt = $this->getConnection()->prepare($insert);
             $stmt->execute([$this->username, $this->email, $this->pass]);
@@ -75,7 +79,7 @@ class Login extends Database{
     public $email;
     public $passw;
 
-    public function __construct($email, $psw)
+    public function __construct($email = null, $psw = null)
     {
         $this->email = $email;
         $this->passw = $psw;
@@ -86,8 +90,7 @@ class Login extends Database{
         $stmt = $this->getConnection()->prepare($sql);
         $stmt->execute([$this->email]);
         $result = $stmt->fetchAll();
-        // var_dump($result);
-        // die;
+        
         if ($result['email'] != ''){
             if ($this->passw != $result["password"]) {
                 $_SESSION['message'] = "Incorrect Password!!";

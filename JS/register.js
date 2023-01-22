@@ -1,21 +1,11 @@
-// dynamic Form
-const addMoreBtn = document.querySelector('#addMore')
-const anotherDiv = document.querySelector('.another-div');
-const  modal = document.querySelector('.modal-body');
-
-
-addMoreBtn.addEventListener('click', (e)=>{
-    anotherDiv.append(modal.cloneNode(true));
-})
 // Register Validation
-
-const form = document.getElementById('register');
+const form = document.getElementById('registerForm');
 const userName = document.getElementById('userName');
 const email = document.getElementById('email');
 const password1 = document.getElementById('password');
 const password2 = document.getElementById('confirmPass');
 
-form.addEventListener('submit', e => {
+form.addEventListener('submit', (e) => {
     e.preventDefault();
 
     validateInputs();
@@ -80,5 +70,7 @@ const validateInputs = () => {
         setSuccess(password2);
     }
 }
+
+
 
 // login validation 

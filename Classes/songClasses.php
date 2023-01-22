@@ -24,7 +24,7 @@ Class Song extends Database{
         for ($i = 0; $i < count($this->title); $i++) {
             $add = "INSERT INTO `songs`(`titre`, `artiste`, `album`, `annee`, `paroles`) VALUES (?, ?, ?, ?, ?)";
             $stmt = $this->getConnection()->prepare($add);
-            $stmt->execute([$this->title[$i], $this->artist[$i], $this->artist[$i], $this->year[$i], $this->lyrics[$i]]);
+            $stmt->execute([$this->title[$i], $this->artist[$i], $this->album[$i], $this->year[$i], $this->lyrics[$i]]);
         }
     }
     public function readSong(){

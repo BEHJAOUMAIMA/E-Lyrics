@@ -47,9 +47,17 @@ Class Song extends Database{
         $stmt->execute([$this->id]);
     }
 
-    // public function statisticArtist(){
-
-    // }
-    // public function 
-    
+    public function statistics($column){
+        switch($column){
+            case "Admins":
+                $sql = "SELECT COUNT(id) FROM `user`";
+                break;
+            case "Titles":
+                $sql = "SELECT COUNT(titre) FROM `songs`";
+                break;
+            case "Artists":
+                $sql = "SELECT COUNT(DISTINCT(artiste)) FROM `songs`";
+                break;
+        }
+    }    
 }

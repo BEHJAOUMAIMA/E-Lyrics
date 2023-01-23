@@ -39,7 +39,7 @@
                 <div class="agree">
                     <label> <input type="checkbox"> I agree to the termes & conditions</label>
                 </div>
-                <button class="position-relative w-100 border-0 fw-bold rounded-3" style="height: 40px; background-color: #d49c4f; color: white;font-size: 16px; outline: none;" type="submit" name="registerBtn" id="registeBtn">Sign Up</button>
+                <button class="position-relative w-100 border-0 fw-bold rounded-3" style="height: 40px; background-color: #d49c4f; color: white;font-size: 16px; outline: none;" type="button" name="registerBtn" id="registeBtn">Sign Up</button>
                 <div class="signUp-link text-center">
                     <p class="text-white">Already have an account ?<a href="./login.php" class="signInBtn-link fw-bold" style="color: #d49c4f;"> Sign In</a></p>
                 </div>

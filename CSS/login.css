@@ -28,8 +28,8 @@ body{
 
 .input-group{
     margin: 30px 0;
-    border-bottom: 2px solid white;
 }
+
 .input-group label{
     position: absolute;
     top: 50%;
@@ -47,18 +47,16 @@ body{
     padding: 0 5px;
     color: white;
     background-color: transparent;
-    border: none;
+    border-bottom: 2px solid white;
+    border-top: none;
+    border-left : none;
+    border-right: none ;
     outline: none;
 }
-.input-group input:focus~label{
-    top: -5px;
+.input-group input:focus~label, .input-group input:valid~label, .input-group input:invalid~label{
+    top: -8px;
 }
-.input-group input:valid~label{
-    top : -5px;
-}
-/* .input-group input:invalid~label{
-    top: -5px;
-} */
+
 .remember{
     margin: -5px 0 15px 5px;
 }

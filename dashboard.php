@@ -1,5 +1,5 @@
 <?php
-  include_once("./Classes/songClasses.php");
+  include("./Classes/songClasses.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,12 +11,22 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
+    <!-- BEGIN parsley css-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/guillaumepotier/Parsley.js@2.9.2/doc/assets/docs.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/guillaumepotier/Parsley.js@2.9.2/src/parsley.css">
+    <!-- END parsley css-->
+    <!-- BEGIN jquery js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- END jquery js-->
+    <!-- BEGIN parsley js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js" integrity="sha512-eyHL1atYNycXNXZMDndxrDhNAegH2BDWt1TmkXJPoGf1WLlNYt08CSjkqF5lnCRmdm3IrkHid8s2jOUY4NIZVQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- END parsley js-->
     <link rel="stylesheet" href="./CSS/dashboard.css">
     <title>Dashboard</title>
 </head>
 <body>
     <!-- navbar start -->
-    <nav class="navbar navbar-expand-lg fixed-top" style="background-color: #204c7b;">
+    <nav class="navbar navbar-expand-lg fixed-top" style="background-color: #0b2036;">
         <div class="container-fluid">
             <!-- offcanvas trigger start -->
             <button class="navbar-toggler me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
@@ -28,23 +38,19 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-           
-            <form class="d-flex ms-auto" role="search">
-                <div class="input-group my-3 my-lg-0">
-                    <input type="text" class="form-control" placeholder="Search" aria-label="Recipient's username" aria-describedby="button-addon2">
-                    <button class="btn btn-outline-light me-lg-3" type="button" id="button-addon2"><i class="bi bi-search"></i></button>
-                  </div>
-            </form>
-
-            <ul class="navbar-nav mb-2 mb-lg-0">
+            <ul class="navbar-nav mb-2 mb-lg-0 ms-auto">
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="bi bi-person-fill"></i>
+                    <?php if(isset($_SESSION["admin"])){
+                        echo $_SESSION["admin"];
+                      }
+                    ?>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" href="#"><span><i class="bi bi-music-note-beamed me-1"></i></span> Songs</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#"><span><i class="bi bi-box-arrow-right me-1"></i></span> Logout</a></li>
+                    <form action="./Classes/login-inc.php" method="GET" name="logout">
+                      <li><button class="dropdown-item" type="submit" name="logoutBtn" id="logoutBtn"><span><i class="bi bi-box-arrow-right me-1"></i></span> Logout</button></li>
+                    </form>
                   </ul>
                 </li>
               </ul>
@@ -57,67 +63,24 @@
     <div class="offcanvas offcanvas-start sidebar-nav" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
         <div class="offcanvas-body p-0">
             <nav>
-                <ul class="navbar-nav">
-                    <li>
-                        <div class="text-white small fw-bold text-uppercase px-3">
-                             CORE
-                        </div>
-                    </li>
-                    <li class="">
+                <ul class="navbar-nav mt-5">
+                    <li class=" mb-3">
                         <a href="#" class="nav-link px-3 active">
                             <span class="me-2"><i class="bi bi-speedometer2"></i></span>
                             <span>Dashboard</span>
                         </a>
                     </li>
-                    <li class="my-4">
-                        <hr class="line dropdown-divider"/>
-                    </li>
-                    <li>
-                        <div class="text-white small fw-bold text-uppercase px-3">
-                             Interface
-                        </div>
-                    </li>
-                    <li>
-                        <a class="nav-link px-3 sidebar-link" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                            <span class="me-2"><i class="bi bi-layout-split"></i></span>
-                            <span>Layouts</span>
-                            <span class="right-icon ms-auto"><i class="bi bi-chevron-down"></i></span>
-                        </a>
-                        <div class="collapse" id="collapseExample">
-                            <ul class="navbar-nav ps-3">
-                                <li>
-                                  <a href="#" class="nav-link px-3">
-                                    <span class="me-2"
-                                      ><i class="bi bi-speedometer2"></i
-                                    ></span>
-                                    <span>Dashboard</span>
-                                  </a>
-                                </li>
-                              </ul>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link px-3">
-                          <span class="me-2"><i class="bi bi-book-fill"></i></span>
-                          <span>Pages</span>
-                        </a>
-                      </li>
-                      <li class="my-4"><hr class="line dropdown-divider bg-light" /></li>
-                      <li>
-                        <div class="text-white small fw-bold text-uppercase px-3 mb-3">
-                          Addons
-                        </div>
-                      </li>
-                      <li>
-                        <a href="#" class="nav-link px-3">
+                    
+                      <li class="mb-3">
+                        <a href="#charts" class="nav-link px-3">
                           <span class="me-2"><i class="bi bi-graph-up"></i></span>
-                          <span>Charts</span>
+                          <span>Statistics</span>
                         </a>
                       </li>
-                      <li>
-                        <a href="#" class="nav-link px-3">
-                          <span class="me-2"><i class="bi bi-table"></i></span>
-                          <span>Tables</span>
+                      <li class=" mb-3">
+                        <a href="#dataTableId" class="nav-link px-3">
+                          <span class="me-2"><i class="bi bi-music-note-list"></i></i></span>
+                          <span>Songs</span>
                         </a>
                       </li>
                 </ul>
@@ -138,43 +101,49 @@
                 </div>
             </div>
             <!-- Cards statistics start -->
-            <div class="row">
+            <div class="row" id="charts">
                 <div class="col-md-4 mb-3">
-                    <div class="card bg-dark text-white h-100">
-                        <div class="card-body py-5">Primary Card</div>
-                        <div class="card-footer d-flex">
-                          View Details
-                          <span class="ms-auto">
-                            <i class="bi bi-chevron-right"></i>
-                          </span>
-                        </div>  
+                    <div class="card text-white h-100 analytics">
+                        <div class="card-body py-5">
+                          <h6 class="card-title mb-4 fs-6 fw-bold text-white">Total Admins</h6>
+                          <p class="card-text text-end fs-6 fw-semibold text-white">
+                            <?php
+                              $analytics = new Song;
+                              echo $analytics->statistics('Admins');
+                            ?>
+                          </p>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-4 mb-3">
-                    <div class="card bg-dark text-white h-100">
-                      <div class="card-body py-5">Warning Card</div>
-                      <div class="card-footer d-flex">
-                        View Details
-                        <span class="ms-auto">
-                          <i class="bi bi-chevron-right"></i>
-                        </span>
-                      </div>
+                    <div class="card text-white h-100 analytics">
+                      <div class="card-body py-5">
+                          <h6 class="card-title mb-4 fs-6 fw-bold text-white">Total Titles Songs</h6>
+                          <p class="card-text text-end fs-6 fw-semibold text-white">
+                            <?php
+                              $analytics = new Song;
+                              echo $analytics->statistics('Titles');
+                            ?>
+                          </p>
+                      </div>   
                     </div>
                 </div>
                 <div class="col-md-4 mb-3">
-                    <div class="card bg-dark text-white h-100">
-                      <div class="card-body py-5">Success Card</div>
-                      <div class="card-footer d-flex">
-                        View Details
-                        <span class="ms-auto">
-                          <i class="bi bi-chevron-right"></i>
-                        </span>
+                    <div class="card text-white h-100 analytics">
+                      <div class="card-body py-5">
+                        <h6 class="card-title mb-4 fs-6 fw-bold text-white">Total Artists</h6>
+                        <p class="card-text text-end fs-6 fw-semibold text-white">
+                          <?php
+                            $analytics = new Song;
+                            echo $analytics->statistics('Artists');
+                          ?>
+                        </p>
                       </div>
                     </div>
                 </div>
             </div>
             <!-- cards statistics end -->
-            <div class="row mt-5 pt-3" style="width: 90%; margin:auto;">
+            <div class="row mt-5 pt-3" style="width: 97%; margin:auto;">
             <!-- Button ADD start -->
                 <div class="row">
                   <div class="col-md-11 mb-4 pb-4">
@@ -186,7 +155,7 @@
             <!-- Button ADD end -->
             <!-- Modal start -->
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <form action="./Classes/song-inc.php" method="post" id="form">
+              <form action="./Classes/song-inc.php" method="post" id="form" data-parsley-validate>
                 <div class="modal-dialog modal-dialog-centered modal-lg">
                       <div class="modal-content">
                         <div class="modal-header">
@@ -197,19 +166,19 @@
                           <input type="hidden" value="" id="hideId" name="Id">
                           <div class="mb-3">
                             <label for="songTitle" class="form-label">Song Title</label>
-                            <input type="text" name="title[]" class="form-control" id="songTitle">
+                            <input type="text" name="title[]" class="form-control" id="songTitle" required data-parsley-minlength="6" data-parsley-trigger="keyup">
                           </div>
                           <div class="mb-3">
                             <label for="artist" class="form-label">Artist</label>
-                            <input type="text" name="artist[]" class="form-control" id="artist">
+                            <input type="text" name="artist[]" class="form-control" id="artist" required data-parsley-minlength="6" data-parsley-trigger="keyup">
                           </div>
                           <div class="mb-3">
                             <label for="album" class="form-label">Album</label>
-                            <input type="text" name="album[]" class="form-control" id="album">
+                            <input type="text" name="album[]" class="form-control" id="album" required data-parsley-minlength="6" data-parsley-trigger="keyup">
                           </div>
                           <div class="mb-3">
                             <label for="year" class="form-label">Year of Creation</label>
-                            <input type="number" name="year[]" class="form-control" id="year">
+                            <input type="number" name="year[]" class="form-control" id="year" required data-parsley-maxlength="4" data-parsley-type="integer" data-parsley-trigger="keyup">
                           </div>
                           <div class="mb-3">
                             <label for="lyrics" class="form-label">Song Lyrics</label>

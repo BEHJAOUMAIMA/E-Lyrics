@@ -1,5 +1,5 @@
 <?php
-include "./database.php";
+
 class Admins extends Database{
     public $username;
     public $email;
@@ -37,6 +37,7 @@ class Admins extends Database{
 
         }
         if($res['id']== ''){
+            
             $insert = "INSERT INTO `user` (`username`, `email`, `password`) VALUES(?,?,?)";
             $stmt = $this->getConnection()->prepare($insert);
             $stmt->execute([$this->username, $this->email, $this->pass]);
@@ -47,28 +48,6 @@ class Admins extends Database{
             header('location:../register.php?error=seremailtaken');
         }
     }
-    // public function login(){
-    //     $sql = "SELECT * FROM `user` WHERE `email`= ? and `password`=?";
-    //     $stmt = $this->getConnection()->prepare($sql);
-    //     $stmt->execute([$this->email,$this->pass]);
-    //     $result = $stmt->fetchAll();
-        
-    //     if ($result["email"] !== "") {
-    //         if ($this->pass !== $result["password"]) {
-    //             $_SESSION['message'] = "Incorrect Password!!";
-    //             header('location: ../login.php');
-    //         }
-    //         else {
-    //             $_SESSION['username'] = $result['username'];
-    //             header('location: ../dashboard.php');
-    //         }
-    //     }
-    //     else {
-    //         $_SESSION['message'] = "Incorrect Email !!";
-    //         header('location: ../login.php');
-    //     }
-
-    // }
     public function logOut(){  
         session_destroy();
         $_SESSION['message'] = "You have been successfully logged out !!";
@@ -76,33 +55,49 @@ class Admins extends Database{
     }
 }
 class Login extends Database{
-    public $email;
-    public $passw;
-
+    private $email;
+    private $passw;
     public function __construct($email = null, $psw = null)
     {
         $this->email = $email;
         $this->passw = $psw;
     }
-
     public function login(){
+        if($this->emptyInputs()==false){
+            header("location: ../login.php?error=empyinput");
+            exit();
+        }
+    }
+    public function emptyInputs(){
+        $res=false;
+        if(empty($this->email) || empty($this->passw)  ){
+            $res = false;
+        }else{
+            $res = true;
+        }
+        return $res;
+    }
+    public function getAdmin(){
         $sql = "SELECT * FROM `user` WHERE `email` = ?";
         $stmt = $this->getConnection()->prepare($sql);
         $stmt->execute([$this->email]);
+        if($stmt->rowCount() == 0){
+            $stmt =0;
+            header( "location: ../login.php?error=usernotfound");
+            exit();
+        }
         $result = $stmt->fetchAll();
+       
         
-        if ($result['email'] != ''){
-            if ($this->passw != $result["password"]) {
-                $_SESSION['message'] = "Incorrect Password!!";
-                header('location: ../login.php');
-            }
-            else {
-                $_SESSION['username'] = $result['username'];
-                header('location: ../dashboard.php');
-            }
-        }else {
-            $_SESSION['message'] = "Incorrect Email !!";
-            header('location: ../login.php');
+        if($this->passw !== $result[0]['password']){
+
+            header("location: ../login.php?error=wrongpassword");
+            exit();
+        }elseif($this->passw == $result[0]['password']){
+            $_SESSION["admin"] = $result[0]["username"];
+            header("location: ../dashboard.php");
+            exit();
+        }
     }
-    }
+
 }

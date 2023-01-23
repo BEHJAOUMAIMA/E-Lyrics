@@ -17,7 +17,7 @@
 
 .sidebar-nav{
     width: var(--offcanvas-width) !important;
-    background-color: #204c7b !important;
+    background-color: #0b2036 !important;
     color: white !important;
 }
 .line{
@@ -35,6 +35,12 @@
 .sidebar-link[aria-expanded="true"] .right-icon {
     transform: rotate(180deg);
 }
+
+.analytics{
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    background-image: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+}
+
 
 @media screen and (min-width : 992px) {
     body{

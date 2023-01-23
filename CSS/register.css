@@ -46,7 +46,7 @@ body{
     outline: none;
 }
 .input-group input:focus~label, .input-group input:valid~label, .input-group input:invalid~label{
-    top: -5px;
+    top: -8px;
 }
 
 .agree{

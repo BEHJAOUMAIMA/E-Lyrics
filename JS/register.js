@@ -4,73 +4,52 @@ const userName = document.getElementById('userName');
 const email = document.getElementById('email');
 const password1 = document.getElementById('password');
 const password2 = document.getElementById('confirmPass');
+const registerBtn = document.querySelector('#registeBtn');
+const errorName = document.getElementById('errorName');
+const errorEmail = document.getElementById('errorEmail');
+const errorPass1 = document.getElementById('errorPass1');
+const errorPass2 = document.getElementById('errorPass2');
+// const regexEmail = /^[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]{2,}$/;
+// const regexPassword = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/;
 
-form.addEventListener('submit', (e) => {
-    e.preventDefault();
+registerBtn.addEventListener("click", () => {
+    var index = 0;
+    if (userName.value === "" || userName.value == null) {
+        index++;
+        userName.classList.add("is-invalid");
+        errorName.innerHTML = "Name is required to create your account.";
+    } else {
+        userName.classList.remove("is-invalid")
+        userName.classList.add("is-valid");
+    }
+    if (email.value === "" || email.value == null) {
+        index++;
+        email.classList.add("is-invalid");
+        errorEmail.innerHTML = "Adress email is required to create your account.";
+    } else {
+        email.classList.remove("is-invalid")
+        email.classList.add("is-valid");
+    }
 
-    validateInputs();
+    if (password1.value === "" || password1.value == null) {
+        index++;
+        password1.classList.add("is-invalid");
+        errorPass1.innerHTML = "Enter a valid password !!";
+    } else {
+        password1.classList.remove("is-invalid")
+        password1.classList.add("is-valid");
+    }
+    if ((password2.value === "" || password2.value == null) || password2.value !== password1.value) {
+        index++;
+        password2.classList.add("is-invalid");
+        errorPass2.innerHTML = "Passwords doesn't match !!";
+    } else {
+        errorPass2.classList.remove("is-invalid")
+        errorPass2.classList.add("is-valid");
+    }
+    if (index == 0) {
+        registerBtn.type = "submit"
+        registerBtn.submit();
+    }
+
 });
-
-const setError = (element, message) => {
-    const inputControl = element.parentElement;
-    const errorDisplay = inputControl.querySelector('.error');
-    errorDisplay.innerText = message;
-
-    inputControl.classList.add('error');
-    inputControl.classList.remove('success');
-}
-
-const setSuccess = element =>{
-    const inputControl = element.parentElement;
-    const errorDisplay = inputControl.querySelector('.error');
-    errorDisplay.innerText = '';
-
-    inputControl.classList.add('success');
-    inputControl.classList.remove('error');
-}
-const isValidEmail = email => {
-    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
-}
-const validateInputs = () => {
-    const userNameValue = userName.value.trim();
-    const emailValue = email.value.trim();
-    const password1Value = password1.value.trim();
-    const password2Value = password2.value.trim();
-
-    if (userNameValue === '') {
-        setError(userName, "UserName is required !");
-    }else if (userNameValue.length<3) {
-        setError(userName, "Enter a valid name !")
-    }else {
-        setSuccess(userName);
-    }
-
-    if(emailValue === '') {
-        setError(email, 'Email is required !');
-    } else if (!isValidEmail(emailValue)) {
-        setError(email, 'Provide a valid email address !');
-    } else {
-        setSuccess(email);
-    }
-
-    if(password1Value === '') {
-        setError(password1, 'Password is required !');
-    } else if (password1Value.length < 8 ) {
-        setError(password1, 'Password must be at least 8 character.')
-    } else {
-        setSuccess(password1);
-    }
-
-    if(password2Value === '') {
-        setError(password2, 'Please confirm your password !');
-    } else if (password2Value !== password1Value) {
-        setError(password2, "Passwords doesn't match !");
-    } else {
-        setSuccess(password2);
-    }
-}
-
-
-
-// login validation 

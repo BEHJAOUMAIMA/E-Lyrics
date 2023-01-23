@@ -22,7 +22,7 @@
                     <div class="error mt-1 fw-bold" style="font-size: 12px; color: #7faaca;" id="errorName"></div>
                 </div>
                 <div class="input-group position-relative">
-                    <input type="text" id="email" name="Email">
+                    <input type="email" id="email" name="Email">
                     <label for="email">Email Address</label>
                     <div class="error mt-1 fw-bold" style="font-size: 12px; color: #7faaca;" id="errorEmail"></div>
                 </div>

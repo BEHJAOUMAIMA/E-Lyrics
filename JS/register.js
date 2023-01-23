@@ -1,5 +1,4 @@
 // Register Validation
-const form = document.getElementById('registerForm');
 const userName = document.getElementById('userName');
 const email = document.getElementById('email');
 const password1 = document.getElementById('password');
@@ -9,9 +8,6 @@ const errorName = document.getElementById('errorName');
 const errorEmail = document.getElementById('errorEmail');
 const errorPass1 = document.getElementById('errorPass1');
 const errorPass2 = document.getElementById('errorPass2');
-// const regexEmail = /^[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]{2,}$/;
-// const regexPassword = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/;
-
 registerBtn.addEventListener("click", () => {
     var index = 0;
     if (userName.value === "" || userName.value == null) {

@@ -17,7 +17,7 @@
 
 .sidebar-nav{
     width: var(--offcanvas-width) !important;
-    background-color: #0b2036 !important;
+    background-color: #0f0c29 !important;
     color: white !important;
 }
 .line{
@@ -41,6 +41,10 @@
     background-image: linear-gradient(to right, #0f0c29, #302b63, #24243e);
 }
 
+thead{
+    color: #09445b !important;
+    font-size: 18px;
+}
 
 @media screen and (min-width : 992px) {
     body{

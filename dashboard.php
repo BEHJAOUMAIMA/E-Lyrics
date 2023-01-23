@@ -1,5 +1,8 @@
 <?php
   include("./Classes/songClasses.php");
+  if(!isset($_SESSION['admin'])) {
+    header('location: login.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,19 +29,19 @@
 </head>
 <body>
     <!-- navbar start -->
-    <nav class="navbar navbar-expand-lg fixed-top" style="background-color: #0b2036;">
+    <nav class="navbar navbar-expand-lg fixed-top" style="background-color: #0f0c29;">
         <div class="container-fluid">
             <!-- offcanvas trigger start -->
             <button class="navbar-toggler me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
                 <span class="navbar-toggler-icon" data-bs-target="#offcanvasExample"></span>
             </button>
             <!-- offcanvas trigger end -->
-          <a class="navbar-brand fw-bold text-white text-uppercase me-auto" href="#">E-lyrics</a>
+          <a class="navbar-brand fw-bold fs-4 ms-5 text-white text-uppercase me-auto" href="#">E-lyrics</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mb-2 mb-lg-0 ms-auto">
+            <ul class="navbar-nav mb-2 pe-3 mb-lg-0 ms-auto">
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="bi bi-person-fill"></i>
@@ -64,23 +67,23 @@
         <div class="offcanvas-body p-0">
             <nav>
                 <ul class="navbar-nav mt-5">
-                    <li class=" mb-3">
+                    <li class="ms-3 mb-3">
                         <a href="#" class="nav-link px-3 active">
-                            <span class="me-2"><i class="bi bi-speedometer2"></i></span>
-                            <span>Dashboard</span>
+                            <span class="me-2"><i class="bi bi-speedometer2 fs-4"></i></span>
+                            <span class="fs-5 fw-semibold">Dashboard</span>
                         </a>
                     </li>
                     
-                      <li class="mb-3">
+                      <li class="ms-3 mb-3">
                         <a href="#charts" class="nav-link px-3">
-                          <span class="me-2"><i class="bi bi-graph-up"></i></span>
-                          <span>Statistics</span>
+                          <span class="me-2"><i class="bi bi-graph-up fs-4"></i></span>
+                          <span class="fs-5 fw-semibold">Statistics</span>
                         </a>
                       </li>
-                      <li class=" mb-3">
+                      <li class="ms-3 mb-3">
                         <a href="#dataTableId" class="nav-link px-3">
-                          <span class="me-2"><i class="bi bi-music-note-list"></i></i></span>
-                          <span>Songs</span>
+                          <span class="me-2"><i class="bi bi-music-note-list fs-4"></i></i></span>
+                          <span class="fs-5 fw-semibold">Songs</span>
                         </a>
                       </li>
                 </ul>
@@ -91,22 +94,22 @@
     <main class="mt-5 py-4">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-12 fw-bold fs-3">
+                <div class="col-md-12 mt-3 fw-bold fs-2">
                     Dashboard
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12 fw-bold fs-5 my-3">
+            <div class="row" id="charts">
+                <div class="col-md-12 fw-bold fs-4 my-4">
                     Statistics
                 </div>
             </div>
             <!-- Cards statistics start -->
-            <div class="row" id="charts">
+            <div class="row">
                 <div class="col-md-4 mb-3">
                     <div class="card text-white h-100 analytics">
                         <div class="card-body py-5">
-                          <h6 class="card-title mb-4 fs-6 fw-bold text-white">Total Admins</h6>
-                          <p class="card-text text-end fs-6 fw-semibold text-white">
+                          <h6 class="card-title ms-3 ps-2 mb-4 fs-5 fw-bold text-white">Total Admins</h6>
+                          <p class="card-text text-end me-4 pe-3 fs-2 fw-semibold text-white">
                             <?php
                               $analytics = new Song;
                               echo $analytics->statistics('Admins');
@@ -118,8 +121,8 @@
                 <div class="col-md-4 mb-3">
                     <div class="card text-white h-100 analytics">
                       <div class="card-body py-5">
-                          <h6 class="card-title mb-4 fs-6 fw-bold text-white">Total Titles Songs</h6>
-                          <p class="card-text text-end fs-6 fw-semibold text-white">
+                          <h6 class="card-title ms-3 ps-2 mb-4 fs-5 fw-bold text-white">Total Titles</h6>
+                          <p class="card-text text-end me-4 pe-3 fs-2 fw-semibold text-white">
                             <?php
                               $analytics = new Song;
                               echo $analytics->statistics('Titles');
@@ -131,8 +134,8 @@
                 <div class="col-md-4 mb-3">
                     <div class="card text-white h-100 analytics">
                       <div class="card-body py-5">
-                        <h6 class="card-title mb-4 fs-6 fw-bold text-white">Total Artists</h6>
-                        <p class="card-text text-end fs-6 fw-semibold text-white">
+                        <h6 class="card-title ms-3 ps-2 mb-4 fs-5 fw-bold text-white">Total Artists</h6>
+                        <p class="card-text text-end me-4 pe-3 fs-2 fw-semibold text-white">
                           <?php
                             $analytics = new Song;
                             echo $analytics->statistics('Artists');
@@ -143,12 +146,12 @@
                 </div>
             </div>
             <!-- cards statistics end -->
-            <div class="row mt-5 pt-3" style="width: 97%; margin:auto;">
+            <div class="row mt-5 pt-3" style="width: 98%; margin:auto;">
             <!-- Button ADD start -->
                 <div class="row">
                   <div class="col-md-11 mb-4 pb-4">
-                    <button onclick="addNew();" type="button" id="addNew" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                     <span><i class="bi bi-plus"></i></span> Add new Song
+                    <button onclick="addNew();" type="button" id="addNew" class="btn btn-outline-dark px-5 fs-5" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                      <span<i class='bx bx-plus me-1'></i></span> <span class="fw-semibold">Add new Song</span> 
                     </button>
                   </div>
                 </div>
@@ -157,45 +160,46 @@
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <form action="./Classes/song-inc.php" method="post" id="form" data-parsley-validate>
                 <div class="modal-dialog modal-dialog-centered modal-lg">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h1 class="modal-title fs-5" id="exampleModalLabel">Add Song</h1>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                          <input type="hidden" value="" id="hideId" name="Id">
-                          <div class="mb-3">
-                            <label for="songTitle" class="form-label">Song Title</label>
-                            <input type="text" name="title[]" class="form-control" id="songTitle" required data-parsley-minlength="6" data-parsley-trigger="keyup">
-                          </div>
-                          <div class="mb-3">
-                            <label for="artist" class="form-label">Artist</label>
-                            <input type="text" name="artist[]" class="form-control" id="artist" required data-parsley-minlength="6" data-parsley-trigger="keyup">
-                          </div>
-                          <div class="mb-3">
-                            <label for="album" class="form-label">Album</label>
-                            <input type="text" name="album[]" class="form-control" id="album" required data-parsley-minlength="6" data-parsley-trigger="keyup">
-                          </div>
-                          <div class="mb-3">
-                            <label for="year" class="form-label">Year of Creation</label>
-                            <input type="number" name="year[]" class="form-control" id="year" required data-parsley-maxlength="4" data-parsley-type="integer" data-parsley-trigger="keyup">
-                          </div>
-                          <div class="mb-3">
-                            <label for="lyrics" class="form-label">Song Lyrics</label>
-                            <textarea type="Text" class="form-control" name="lyrics[]" id="lyrics" rows="4"></textarea>
-                          </div>
-                          
-                        </div>
-                        <div class="another-div">
-                        </div>
-                        <div class="modal-footer">
-
-                          <button type="button" class="btn btn-success me-auto" id="addMore" name="addMore">Add</button>
-                          <button type="submit" class="btn btn-warning" id="updateBtn" name="updateBtn">Update</button>
-                          <button type="submit" class="btn btn-primary px-3" id="saveBtn" name="saveBtn">Save</button> 
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closeBtn">Close</button>
-                          <button type="submit" class="btn btn-danger px-3" id="deleteBtn" name="deleteBtn">Delete</button>                                                  </div>
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">Add Song</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <input type="hidden" value="" id="hideId" name="Id">
+                      <div class="mb-3">
+                        <label for="songTitle" class="form-label">Song Title</label>
+                        <input type="text" name="title[]" class="form-control" id="songTitle" required data-parsley-minlength="6" data-parsley-trigger="keyup">
                       </div>
+                      <div class="mb-3">
+                        <label for="artist" class="form-label">Artist</label>
+                        <input type="text" name="artist[]" class="form-control" id="artist" required data-parsley-minlength="6" data-parsley-trigger="keyup">
+                      </div>
+                      <div class="mb-3">
+                        <label for="album" class="form-label">Album</label>
+                        <input type="text" name="album[]" class="form-control" id="album" required data-parsley-minlength="6" data-parsley-trigger="keyup">
+                      </div>
+                      <div class="mb-3">
+                        <label for="year" class="form-label">Year of Creation</label>
+                        <input type="number" name="year[]" class="form-control" id="year" required data-parsley-maxlength="4" data-parsley-type="integer" data-parsley-trigger="keyup">
+                      </div>
+                      <div class="mb-3">
+                        <label for="lyrics" class="form-label">Song Lyrics</label>
+                        <textarea type="Text" class="form-control" name="lyrics[]" id="lyrics" rows="4"></textarea>
+                      </div>
+                      
+                    </div>
+                    <div class="another-div">
+                    </div>
+                    <div class="modal-footer">
+
+                      <button type="button" class="btn me-auto" id="addMore" name="addMore" style="background-color: #C13584; color: white; font-weight: 600;">Add More</button>
+                      <button type="submit" class="btn " id="updateBtn" name="updateBtn" style="font-weight: 600; background-color: #3C6255;color: white;">Update</button>
+                      <button type="submit" class="btn btn-dark px-4" id="saveBtn" name="saveBtn" style="font-weight: 600;">Save</button> 
+                      <button type="button" class="btn" data-bs-dismiss="modal" id="closeBtn" style="font-weight: 600; background-color: #86A3B8; color: white;">Close</button>
+                      <button type="submit" class="btn btn-danger px-3" id="deleteBtn" name="deleteBtn" style="font-weight: 600;">Delete</button>                                                 
+                    </div>
+                  </div>
                 </div>
               </form> 
             </div>
@@ -230,8 +234,8 @@
                         <td><?php echo $melodie["annee"]?></td>
                         <td><?php echo $melodie["paroles"]?></td>
                         <td class="d-flex">
-                            <button onclick="edit(<?php echo $melodie['id']?>)" type="button" class="btn btn-warning mx-1" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-pencil-square"></i></button>
-                            <button onclick="deletebtn(<?php echo $melodie['id']?>);" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-trash3"></i></button>
+                            <button onclick="edit(<?php echo $melodie['id']?>)" type="button" class="btn mx-1" style="background-color: #3C6255;color: white;" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-pencil-square"></i></button>
+                            <button onclick="deletebtn(<?php echo $melodie['id']?>);" type="button" class="btn" style="background-color: #8E415B;color: white;" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-trash3"></i></button>
                         </td>
                       </tr>
                     <?php

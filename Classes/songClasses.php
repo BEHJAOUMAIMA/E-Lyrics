@@ -94,21 +94,20 @@ class Admins extends Database{
 
         //validation
         if (empty($this->username) || empty($this->email) || empty($this->pass) || empty($this->passRepeat)) {
-            $_SESSION['message'] = "Please fill all required fields !!";
             header("location: ../register.php?error=emptyinput");
+            exit;
         }
         if(!preg_match("/^[a-zA-Z0-9 ]*$/", $this->username)){
-            $_SESSION['message'] = "Please enter a valid Name !!";
             header("location: ../register.php?error=username");
+            exit;
         }
         if(!filter_var($this->email, FILTER_VALIDATE_EMAIL)){
-            $_SESSION['message'] = "Please enter a valid email !!";
             header("location: ../register.php?error=email");
+            exit;
         }
         if($this->pass !== $this->passRepeat){
-            $_SESSION['message'] = "Passwords dosn't Match !!";
             header("location: ../register.php?error=passwordmatch");
-
+            exit;
         }
         if($res['id']== ''){
             
@@ -116,15 +115,13 @@ class Admins extends Database{
             $stmt = $this->getConnection()->prepare($insert);
             $stmt->execute([$this->username, $this->email, $this->pass]);
             header('location:../login.php');
-            $_SESSION['message1'] = "Registration has been added successfully !";
         } else {
-            $_SESSION['message'] = "Email already Taken!!";
             header('location:../register.php?error=seremailtaken');
         }
     }
     public function logOut(){  
         session_destroy();
-        $_SESSION['message'] = "You have been successfully logged out !!";
+        // $_SESSION['message'] = "You have been successfully logged out !!";
         header("Location: ../login.php");
     }
 }

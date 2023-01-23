@@ -121,7 +121,6 @@ class Admins extends Database{
     }
     public function logOut(){  
         session_destroy();
-        // $_SESSION['message'] = "You have been successfully logged out !!";
         header("Location: ../login.php");
     }
 }
@@ -167,7 +166,6 @@ class Login extends Database{
         }elseif($this->passw == $result[0]['password']){
             $_SESSION["admin"] = $result[0]["username"];
             header("location: ../dashboard.php");
-                
             exit();
         }
     }
